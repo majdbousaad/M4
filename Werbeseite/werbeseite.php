@@ -302,7 +302,7 @@ $AnzahlBesucher = mysqli_fetch_row($result)[0];
             echo "</ul></details>";
             ?>
         </div>
-
+        <a href="wunschgericht.php">Dein Wunschgericht bei uns melden</a>
         <div class="grid-main-element" id="zahlen">
             <h1>E-Mensa in Zahlen</h1>
                 <?php
