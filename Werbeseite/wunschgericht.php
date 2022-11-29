@@ -42,9 +42,7 @@ if(isset($_POST["submitGericht"])){
         echo "Verbindung fehlgeschlagen: ", mysqli_connect_error();
         exit();
     }
-
     $sql ="INSERT INTO wunschgericht(name, Beschreibung, ersteller_name, ersteller_email) VALUES('$gerichtsname', '$geichtsbeschreibung', '$erstellername', '$erstelleremail')";
-
     mysqli_query($link, $sql);
     $erfolgreich = true;
 }
