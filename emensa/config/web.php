@@ -15,7 +15,7 @@ return array(
     '/requestdata'   => 'DemoController@requestdata',
 
     // Erstes Beispiel:
-    '/m4_6a_queryparameter' => 'ExampleController@m4_6a_queryparameter',
+    '/m4_7a_queryparameter' => 'ExampleController@m4_7a_queryparameter',
     '/m4' => 'ExampleController@m4_6a_queryparameter',
 
 );
