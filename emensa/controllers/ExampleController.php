@@ -15,4 +15,14 @@ class ExampleController
             'url' => 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"
         ]);
     }
+
+    public function m4_7b_kategorie(RequestData  $rd){
+
+        $data = db_kategorie_select_namen_sortiert();
+
+        $vars = [
+            'data' => $data
+        ];
+        return view("examples.m4_7b_kategorie", $vars);
+    }
 }
