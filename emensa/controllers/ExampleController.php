@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/kategorie.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/../models/gericht.php');
 
 class ExampleController
 {
@@ -24,5 +25,13 @@ class ExampleController
             'data' => $data
         ];
         return view("examples.m4_7b_kategorie", $vars);
+    }
+    public  function m4_7c_gerichte(RequestData  $rd){
+        $data = db_gericht_select_names_preis_intern();
+
+        $vars = [
+            'data' => $data
+        ];
+        return view("examples.m4_7c_gerichte", $vars);
     }
 }
