@@ -1,5 +1,8 @@
 @extends("layout")
 
+@php
+$links = include '../config/web.php';
+@endphp
 @section("content")
     <header class="mt-5">
         <h1>Hauptseite E-Mensa</h1>
@@ -14,6 +17,14 @@
         </ul>
         <ul>
             <li><a href="/debug"><code class="language-php">phpinfo();</code></a></li>
+        </ul>
+        <ul>
+            meine Navigation (zur Vereinfachung)
+            @forelse($links as $key => $value)
+                <li><a href="{{$key}}">{{$key}}</a></li>
+            @empty
+                empty
+            @endforelse
         </ul>
     </nav>
     <footer>
