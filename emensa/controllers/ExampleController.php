@@ -34,4 +34,13 @@ class ExampleController
         ];
         return view("examples.m4_7c_gerichte", $vars);
     }
+
+    public function m4_7d_layout(RequestData  $rd){
+
+        if(!isset($rd->query['no']) || $rd->query['no'] == 1){
+            return view("examples.pages.m4_7d_page_1", []);
+        } else if($rd->query['no'] == 2){
+            return view("examples.pages.m4_7d_page_2", []);
+        }
+    }
 }
