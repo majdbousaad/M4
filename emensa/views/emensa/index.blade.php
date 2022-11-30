@@ -115,6 +115,6 @@ session_start();
 @endsection
 
 @php
-    session_abort();
+    session_unset();
 @endphp
 
