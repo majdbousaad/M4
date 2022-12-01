@@ -1,6 +1,3 @@
-@php
-session_start();
-@endphp
 
 @extends("emensa.layout")
 
@@ -55,42 +52,39 @@ session_start();
 @section("kontakt")
     <h1>Intersse geweckt? Wir informieren Sie!</h1>
     <br>
-    <form method="post" action="newsletter.php">
+    <form method="post" action="/newsletter">
 
         <label >Ihr Name:</label>
-        <input type="text" placeholder="Vorname" name="Name" value="<?php echo $_SESSION["name"];?>">
+        <input type="text" placeholder="Vorname" name="Name" value="{{$rd->query["Name"]}}">
         <label>Ihr Email:</label>
-        <input type="text" name="Email" value="<?php echo $_SESSION["email"];?>">
+        <input type="text" name="Email" value="{{$rd->query["Email"]}}">
         <label>Newsletter bitte in:</label>
         <select name="lan" >
-            <option value="D" <?php if($_SESSION["lan"] == "D")echo "selected";?>>
+            <option value="D" <?php if($rd->query["lan"] == "D")echo "selected";?>>
                 Deutsch
             </option>
-            <option value="E" <?php if($_SESSION["lan"] == "E")echo "selected";?>>Englisch</option>
+            <option value="E" <?php if($rd->query["lan"] == "E")echo "selected";?>>Englisch</option>
         </select>
         <br>
 
-        <input class="check" type="checkbox" name="ds" <?php if($_SESSION["ds"] == "on")echo "checked";?> >
+        <input class="check" type="checkbox" name="ds" <?php if($rd->query["ds"] == "on")echo "checked";?> >
         Den Datenschutzbestimmungen stimme ich zu
 
         <input id="submit" type="submit" name="submit" value="Zum Newsletter anmleden">
 
 
     </form>
+    @if(isset($erfolgreich) && $erfolgreich == false)
+        <p class='error'> Errors :</p>
+        <ul>
+        @foreach($msgs as $msg)
+            <li class="error">{{$msg}}</li>
+        @endforeach
+        </ul>
 
-    <?php
-    //Newsletter Fehlermeldungen anzeigen oder erfolgreiche speicherung zurückgeben
-    if($_SESSION["fehler"]) {
-        echo "<p class='error'> Errors :</p>";
-        echo "<ul>";
-        foreach ($_SESSION["msgs"] as $msg) {
-            echo "<li class='error'>".$msg."</li>";
-        }
-        echo "</ul>";
-    } else if($_SESSION["erfolgreich"]){
-        echo "<p style='color: green'> ".$_SESSION["name"].", Deine Daten wurden erfolgeich gespeichert!</p>";
-    }
-    ?>
+    @elseif(isset($erfolgreich) && $erfolgreich == true)
+        <p style='color: green'> {{$rd->query["Name"]}}, Deine Daten wurden erfolgeich gespeichert!</p>
+    @endif
 
 
 @endsection
@@ -107,6 +101,10 @@ session_start();
 @endsection
 
 @section("footer")
+    <script>
+        const element = document.getElementById("wichtig");
+        element.scrollIntoView({behavior: "smooth"});
+    </script>
     <ul>
         <li>(c) E-Mensa GmbH</li>
         <li>Majd Bousaad & Nicolas Harrje</li>
@@ -114,7 +112,6 @@ session_start();
     </ul>
 @endsection
 
-@php
-    session_unset();
-@endphp
+
+
 
