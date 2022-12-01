@@ -101,10 +101,12 @@
 @endsection
 
 @section("footer")
+    @if(isset($erfolgreich))
     <script>
         const element = document.getElementById("wichtig");
         element.scrollIntoView({behavior: "smooth"});
     </script>
+    @endif
     <ul>
         <li>(c) E-Mensa GmbH</li>
         <li>Majd Bousaad & Nicolas Harrje</li>
