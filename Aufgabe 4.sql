@@ -8,38 +8,55 @@ ALTER TABLE gericht_hat_kategorie
 create index gericht_name_index
     on gericht (name);
 
+
 #3
 alter table gericht_hat_allergen
-    drop foreign key gericht_hat_allergen_allergen_code_fk;
+    drop foreign key gericht_fk;
 
 alter table gericht_hat_allergen
-    add constraint gericht_hat_allergen_allergen_code_fk
-        foreign key (code) references allergen (code)
-            on delete cascade;
-
-alter table gericht_hat_allergen
-    drop foreign key gericht_hat_allergen_gericht_id_fk;
-
-alter table gericht_hat_allergen
-    add constraint gericht_hat_allergen_gericht_id_fk
+    add constraint gericht_fk
         foreign key (gericht_id) references gericht (id)
             on delete cascade;
+
+alter table gericht_hat_kategorie
+    drop constraint gericht_id_fk;
+
+alter table gericht_hat_kategorie
+    add constraint gericht_id_fk
+        foreign key(gericht_id)
+            references gericht(id)
+            on delete cascade ;
 
 
 #4
 
+alter table gericht_hat_kategorie
+    drop constraint kategorie_id_fk;
 
+alter table gericht_hat_kategorie
+    add constraint kategorie_id_fk
+        foreign key(kategorie_id)
+            references kategorie(id)
+            on delete restrict;
+
+alter table kategorie
+    drop constraint eltern_id_fk;
+
+alter table kategorie
+    add constraint eltern_id_fk
+    foreign key (eltern_id)
+    references kategorie(id)
+    on delete restrict ;
 
 
 #5
 alter table gericht_hat_allergen
-    drop constraint gericht_hat_allergen_allergen_code_fk;
+    drop foreign key allergen_fk;
 
 alter table gericht_hat_allergen
-    add constraint gericht_hat_allergen_allergen_code_fk
-    foreign key (code)
-    references allergen(code)
-    on update cascade;
+    add constraint allergen_fk
+        foreign key (code) references allergen (code)
+            on update cascade;
 
 
 #6
